@@ -2,9 +2,8 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Candelabro AR 2026</title>
+<title>Candelabro AR</title>
 
-<!-- Model Viewer -->
 <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
 <style>
@@ -46,7 +45,7 @@
 
 <!-- Preview del modelo -->
 <model-viewer
-  src="candelabro_final_2026.glb"
+  id="modeloAR"
   camera-controls
   auto-rotate
   shadow-intensity="1"
@@ -60,17 +59,17 @@
 
 <script>
 function abrirAR() {
+  const version = Math.floor(Math.random() * 100000); // Parámetro único para cache
   const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
   const isAndroid = /Android/.test(navigator.userAgent);
 
   if (isiOS) {
-    // iOS Quick Look: usamos ?v= para evitar cache
-    const version = Math.floor(Math.random() * 1000);
-    window.location.href = "https://michellequinterows.github.io/QR-CANDELABRO_2026/candelabro_final_2026.usdz?v=" + version;
+    // iOS Quick Look: se agrega v= para forzar versión nueva
+    window.location.href = "https://michellequinterows.github.io/QR-CANDELABRO/candelabro_v2.usdz?v=" + version;
   } 
   else if (isAndroid) {
-    // Android Scene Viewer: URL limpia, codificada, sin parámetros
-    const glbUrl = encodeURIComponent("https://michellequinterows.github.io/QR-CANDELABRO_2026/candelabro_final_2026.glb");
+    // Android Scene Viewer: se agrega v= para evitar cache
+    const glbUrl = encodeURIComponent("https://michellequinterows.github.io/QR-CANDELABRO/candelabro_v2.glb?v=" + version);
     window.location.href =
       "intent://arvr.google.com/scene-viewer/1.0?file=" + glbUrl + "&mode=ar_only#Intent;scheme=https;package=com.google.ar.core;end;";
   } 
@@ -78,6 +77,13 @@ function abrirAR() {
     alert("Abre este enlace desde un iPhone o Android compatible.");
   }
 }
+
+// Actualizar el <model-viewer> para que siempre cargue la última versión
+document.addEventListener('DOMContentLoaded', () => {
+  const version = Math.floor(Math.random() * 100000);
+  const modelo = document.getElementById('modeloAR');
+  modelo.src = "https://michellequinterows.github.io/QR-CANDELABRO/candelabro_v2.glb?v=" + version;
+});
 </script>
 
 </body>
