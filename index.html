@@ -65,11 +65,11 @@ function abrirAR() {
 
   if (isiOS) {
     // iOS Quick Look: se agrega v= para forzar versión nueva
-    window.location.href = "https://michellequinterows.github.io/QR-CANDELABRO/candelabro_v2.usdz?v=" + version;
+    window.location.href = "https://michellequinterows.github.io/QR-CANDELABRO/can_01.usdz?v=" + version;
   } 
   else if (isAndroid) {
     // Android Scene Viewer: se agrega v= para evitar cache
-    const glbUrl = encodeURIComponent("https://michellequinterows.github.io/QR-CANDELABRO/candelabro_v2.glb?v=" + version);
+    const glbUrl = encodeURIComponent("https://michellequinterows.github.io/QR-CANDELABRO/can_01.glb?v=" + version);
     window.location.href =
       "intent://arvr.google.com/scene-viewer/1.0?file=" + glbUrl + "&mode=ar_only#Intent;scheme=https;package=com.google.ar.core;end;";
   } 
@@ -82,7 +82,7 @@ function abrirAR() {
 document.addEventListener('DOMContentLoaded', () => {
   const version = Math.floor(Math.random() * 100000);
   const modelo = document.getElementById('modeloAR');
-  modelo.src = "https://michellequinterows.github.io/QR-CANDELABRO/candelabro_v2.glb?v=" + version;
+  modelo.src = "https://michellequinterows.github.io/QR-CANDELABRO/can_01.glb?v=" + version;
 });
 </script>
 
