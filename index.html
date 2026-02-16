@@ -43,7 +43,6 @@
 
 <body>
 
-<!-- Preview del modelo -->
 <model-viewer
   id="modeloAR"
   camera-controls
@@ -58,18 +57,18 @@
 </button>
 
 <script>
+const BASE_URL = "https://michellequinterows.github.io/QR-CANDELABRO_2026/";
+
 function abrirAR() {
-  const version = Math.floor(Math.random() * 100000); // Parámetro único para cache
+  const version = Math.floor(Math.random() * 100000);
   const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
   const isAndroid = /Android/.test(navigator.userAgent);
 
   if (isiOS) {
-    // iOS Quick Look: se agrega v= para forzar versión nueva
-    window.location.href = "https://michellequinterows.github.io/QR-CANDELABRO/can_01.usdz?v=" + version;
+    window.location.href = BASE_URL + "can_01.usdz?v=" + version;
   } 
   else if (isAndroid) {
-    // Android Scene Viewer: se agrega v= para evitar cache
-    const glbUrl = encodeURIComponent("https://michellequinterows.github.io/QR-CANDELABRO/can_01.glb?v=" + version);
+    const glbUrl = encodeURIComponent(BASE_URL + "can_01.glb?v=" + version);
     window.location.href =
       "intent://arvr.google.com/scene-viewer/1.0?file=" + glbUrl + "&mode=ar_only#Intent;scheme=https;package=com.google.ar.core;end;";
   } 
@@ -78,11 +77,10 @@ function abrirAR() {
   }
 }
 
-// Actualizar el <model-viewer> para que siempre cargue la última versión
 document.addEventListener('DOMContentLoaded', () => {
   const version = Math.floor(Math.random() * 100000);
   const modelo = document.getElementById('modeloAR');
-  modelo.src = "https://michellequinterows.github.io/QR-CANDELABRO/can_01.glb?v=" + version;
+  modelo.src = BASE_URL + "can_01.glb?v=" + version;
 });
 </script>
 
